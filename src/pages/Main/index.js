@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 
-import { Entypo } from '@expo/vector-icons'
+import { Context as TransactionContext } from '../../context/transactions'
 
 import {
     Image,
@@ -34,10 +34,14 @@ import Total from '../../assets/total.png'
 
 import { ModalNovaTransicao } from '../../components/Modal'
 import { TransactionItem, TransactionHeader } from '../../components/Transaction'
+
+import { formatNumber } from '../../utils/formatCurrency'
+
 export function Main() {
     const [modalVisible, setModalVisible] = useState(false);
-    const [transactions, setTransactions] = useState([]);
+    const { transactions, incomes, expenses, total } = useContext(TransactionContext)
 
+    alert('teste')
     return (
         <Container>
             <Header>
@@ -49,36 +53,32 @@ export function Main() {
                         <TitleCard>Entradas</TitleCard>
                         <IconCard source={Income} />
                     </H3>
-                    <TextDisplay>R$ 10.000,00</TextDisplay>
+                    <TextDisplay>R$ {formatNumber(incomes)}</TextDisplay>
                 </Card>
                 <Card>
                     <H3>
                         <TitleCard>Saídas</TitleCard>
                         <IconCard source={Expense} />
                     </H3>
-                    <TextDisplay>-R$ 3.000,59</TextDisplay>
+                    <TextDisplay>R$ {formatNumber(expenses)}</TextDisplay>
                 </Card>
                 <Card total>
                     <H3>
                         <TitleCard total>Total</TitleCard>
                         <IconCard source={Total} />
                     </H3>
-                    <TextDisplay total>R$ 6.999,41</TextDisplay>
+                    <TextDisplay total>R$ {formatNumber(total)}</TextDisplay>
                 </Card>
             </Balance>
             <Transactions>
                 <Button onPress={() => setModalVisible(!modalVisible)}>
                     <TextNewTransaction>+ Nova Transação</TextNewTransaction>
                 </Button>
-                {/* <Button onPress={() => setModalVisible(!modalVisible)}>
-                    <Entypo name="list" size={22} color="#49aa26" />
-                    <TextExtract test>Ver extrato</TextExtract>
-                </Button> */}
             </Transactions>
             <CardTransactions>
                 <TransactionHeader />
-                {transactions.map((transaction, i) => 
-                    <TransactionItem key={i} {...transaction}/>
+                {transactions.map((transaction, i) =>
+                    <TransactionItem key={i} {...transaction} />
                 )}
             </CardTransactions>
             <ModalNovaTransicao

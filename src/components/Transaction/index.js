@@ -3,27 +3,30 @@ import React from 'react'
 import {
     Container,
     Column,
-    Text
+    Text,
+    TextValue
 } from './styles'
 
-export function TransactionItem({description, valor, data}) {
-    return(
+import { formatNumber } from '../../utils/formatCurrency'
+
+export function TransactionItem({ description, valor, date }) {
+    return (
         <Container>
             <Column>
                 <Text>{description}</Text>
             </Column>
             <Column>
-                <Text>{valor}</Text>
+                <TextValue valor={valor}>R$ {formatNumber(valor)}</TextValue>
             </Column>
             <Column>
-                <Text>{data}</Text>
+                <Text>{date}</Text>
             </Column>
         </Container>
     )
 }
 
 export function TransactionHeader() {
-    return(
+    return (
         <Container>
             <Column>
                 <Text>Descrição</Text>

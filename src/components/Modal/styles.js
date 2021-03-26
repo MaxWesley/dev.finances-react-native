@@ -7,7 +7,7 @@ export const novaTransicaoStyles = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center",
         backgroundColor: "#27264377",
-        padding: 32,
+        padding: 16,
     }
 });
 
@@ -31,7 +31,7 @@ export const TitleModal = styled.Text`
     border-bottom-width: 1px;
     border-bottom-color: #d2d2d2;
 
-    margin-bottom: 32px;
+    margin-bottom: 16px;
 `
 export const TextLabel = styled.Text`
     color: #d2d2d2;
@@ -90,4 +90,21 @@ export const TextObs = styled.Text`
     opacity: 0.4;
     margin-top: -12px;
     margin-bottom: 16px;
+`
+
+export const DatePickerContainer = styled.TouchableOpacity`
+    width: 100%;
+    height: 40px;
+    background-color: #FFFFFF;
+
+    margin-bottom: 16px;
+`
+
+export const TextDate = styled.Text`
+    font-size: 16px;
+    padding-bottom: 8px;
+    padding-top: 4px;
+    padding-left: 12px;
+
+    color: #363f5f;    
 `
